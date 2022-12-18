@@ -15,7 +15,7 @@ app = FastAPI (title="Proyecto_02 Federico", description="ETL", version="0.1")
 async def consulta1(platform:str, type:str, year:int):
 
     # Aqui se realiza la conexion a la base de datos
-    engine = sql.create_engine(url = sqlalchemy_database)
+    engine = sql.create_engine(url = database_ubicacion)
     df = pd.read_sql('dataset_new', engine)
 
     # Linea de solicitud
