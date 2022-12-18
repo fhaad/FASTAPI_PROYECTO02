@@ -1,8 +1,7 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI
 import pandas as pd
 import sqlalchemy as sql
 from sqlalchemy import engine
-from pydantic import Required
 
 
 # mensaje
