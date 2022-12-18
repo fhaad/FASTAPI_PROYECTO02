@@ -10,5 +10,5 @@ async def ejemplo(nombre:str, apellido:str):
 
 
 
-    return {"nombre":nombre, "apellido":apellido}
+    return {"nombre":str(nombre), "apellido":str(apellido)}
 
