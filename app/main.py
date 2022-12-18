@@ -8,7 +8,7 @@ from pydantic import Required
 # mensaje
 database_ubicacion = "sqlite:///../DB_Database/dataset_new.db"
 
-app = FastAPI (title="Proyecto_01 Federico", description="ETL", version="0.1")
+app = FastAPI (title="Proyecto_02 Federico", description="ETL", version="0.1")
 
 @app.get("/Aplication1")
 
