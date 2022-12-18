@@ -1,6 +1,11 @@
 from fastapi import FastAPI
+import pandas as pd
+import sqlalchemy as sql
+from sqlalchemy import engine
 
 app = FastAPI(title="Practica01", description="Formulario", version="0.1")
+
+database_ubicacion = "sqlite:///../DB_Database/dataset_new.db"
 
 # Se crea una pequeña base de datos en un diccionario
 user_db = { 
@@ -33,11 +38,24 @@ async def users():
     return user_list
 
 '''
-
 '''
-
-@app.get("/usuariosname/{username}")
+@app.get("/usuarios_nombre/{username}")
 async def usuarios(username:str):
 
     
     return user_db[username]
+
+'''
+'''
+@app.get("/Base_datos")
+async def BaseDatos():
+    
+    engine = sql.create_engine(url = database_ubicacion)
+
+    query = f"SELECT * FROM dataset_new" 
+    df = pd.read_sql(sql=query, con=engine)
+
+
+
+
+    return df.to_dict(orient="records")
