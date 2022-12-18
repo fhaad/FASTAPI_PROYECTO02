@@ -18,7 +18,9 @@ user_db = {
     'dina':{'username':'dina', 'dated_joined':'2022-03-01', 'location':'Miami', 'age':'26'}
 }
 
-
+'''
+En el primer ejemplo damos datos a campos y nos devolvera lo escrito en formato json
+'''
 @app.get("/ejemplo")
 async def ejemplo(nombres:str, apellidos:str, cellphone:str):
 
@@ -29,7 +31,7 @@ async def ejemplo(nombres:str, apellidos:str, cellphone:str):
 
     return {"nombre":str(nombres), "apellido":str(apellidos), "celular":str(cellphone)}
 '''
-
+En el siguiente ejemplo se mostrara el valor de la base de datos
 '''
 @app.get("/usuarios")
 async def users():
@@ -41,6 +43,7 @@ async def users():
     return user_list
 
 '''
+En este codigo de ejemplo escribiremos el username y nos devuleve la informacion del usuario
 '''
 @app.get("/usuarios_nombre/{username}")
 async def usuarios(username:str):
@@ -49,6 +52,7 @@ async def usuarios(username:str):
     return user_db[username]
 
 '''
+En este ejemplo utilizaremos la expresion Limit para llamar la cantidad de usuarios que debe mostrar
 '''
 @app.get("/usuarios_consulta")
 async def users_query(limit:int):
@@ -59,8 +63,17 @@ async def users_query(limit:int):
 
     return user_list[:limit]
 '''
+En este codigo utilizaremos el campo location para que muestre los registros que contenga esa misma location
 '''
+@app.get("/usuarios_location/{location}")
+async def users_query2(location:str):
 
+    
+
+    return user_db[location]
+
+'''
+'''
 @app.get("/Base_datos")
 async def BaseDatos():
     
