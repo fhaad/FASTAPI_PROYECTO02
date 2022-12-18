@@ -35,7 +35,7 @@ async def consulta1(platform:str, type:str, year:int):
 async def consulta2(platform:str):
 
     
-    engine = sql.create_engine(url = sqlalchemy_database)
+    engine = sql.create_engine(url = database_ubicacion)
     df = pd.read_sql('dataset_new', engine)
 
 
@@ -54,7 +54,7 @@ async def consulta2(platform:str):
 async def consulta3(genero:str):
 
     
-    engine = sql.create_engine(url = sqlalchemy_database)
+    engine = sql.create_engine(url = database_ubicacion)
     df = pd.read_sql('dataset_new', engine)
 
 
@@ -72,7 +72,7 @@ async def consulta3(genero:str):
 async def consulta4(year:int, platform:str):
 
     
-    engine = sql.create_engine(url = sqlalchemy_database)
+    engine = sql.create_engine(url = database_ubicacion)
     df = pd.read_sql('dataset_new', engine)
 
 
