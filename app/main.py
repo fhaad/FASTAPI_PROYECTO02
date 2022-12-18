@@ -20,11 +20,12 @@ async def consulta1(platform:str, type:str, year:int):
     # Linea de solicitud
     consulta = (df['platform'] == platform) & (df['release_year'] == year) & (df['type'] == type)
     resultado = df[consulta]['min'].idxmax()
+    resultado1= df.loc[resultado, 'title']
 
 
     
 
-    return {df.loc[resultado, 'title']}
+    return {"resultado": str(resultado1) }
 '''
 
 '''
