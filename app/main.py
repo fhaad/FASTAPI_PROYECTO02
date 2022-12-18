@@ -24,7 +24,7 @@ async def consulta1(platform:str, type:str, year:int):
 
     
 
-    return df.loc[resultado, 'title']
+    return {df.loc[resultado, 'title']}
 '''
 
 '''
