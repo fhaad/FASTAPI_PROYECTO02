@@ -10,27 +10,22 @@ database_ubicacion = "sqlite:///../DB_Database/dataset_new.db"
 
 app = FastAPI (title="Proyecto_01 Federico", description="ETL", version="0.1")
 
-@app.get("/Aplication1_Max_Duration")
+@app.get("/Aplication1")
 
-async def consulta1(platform:str = Query(default=Required), year:int, type:str):
+async def consulta1(platform:str, type:str, year:int):
 
     # Aqui se realiza la conexion a la base de datos
-    engine = sql.create_engine(url = database_ubicacion)
-    consul = f"SELECT title, type, listed_in, max(min) FROM database_new WHERE type = '{type}' AND platform = '{platform}' AND release_year = '{year}'"
-    df = pd.read_sql(sql=consul, con=engine)
-    return df.to_dict(orient="records")
-
-
-
+    engine = sql.create_engine(url = sqlalchemy_database)
+    df = pd.read_sql('dataset_new', engine)
 
     # Linea de solicitud
-    #consulta = (df['platform'] == platform) & (df['release_year'] == year) & (df['type'] == type)
-    #resultado = df[consulta]['min'].idxmax()
+    consulta = (df['platform'] == platform) & (df['release_year'] == year) & (df['type'] == type)
+    resultado = df[consulta]['min'].idxmax()
 
 
     
 
-    #return df.loc[resultado, 'title']
+    return df.loc[resultado, 'title']
 '''
 
 '''
