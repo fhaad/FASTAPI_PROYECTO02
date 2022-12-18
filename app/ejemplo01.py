@@ -31,3 +31,13 @@ async def users():
 
 
     return user_list
+
+'''
+
+'''
+
+@app.get("/usuariosname/{username}")
+async def usuarios(username:str):
+
+    
+    return user_db[username]
