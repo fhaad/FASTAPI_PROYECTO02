@@ -1,7 +1,20 @@
 from fastapi import FastAPI
 import pandas as pd
-import sqlalchemy as sql
-from sqlalchemy import engine
+#---------------------------------------------------------------------------#
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+SQLALCHEMY_DATABASE_URL = "sqlite:///../DB_Database/dataset_new.db"
+# SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
+
+engine = create_engine(
+    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+Base = declarative_base()
+#---------------------------------------------------------------------------#
 
 app = FastAPI(title="Practica01", description="Formulario", version="0.1")
 
@@ -60,7 +73,6 @@ async def users_query(limit:int):
     user_list = list(user_db.values())
 
 
-
     return user_list[:limit]
 '''
 En este codigo utilizaremos el campo location para que muestre los registros que contenga esa misma location
@@ -69,7 +81,6 @@ En este codigo utilizaremos el campo location para que muestre los registros que
 async def users_query2(location:str):
 
     
-
     return user_db[location]
 
 '''
@@ -77,7 +88,9 @@ async def users_query2(location:str):
 @app.get("/Base_datos")
 async def BaseDatos():
     
-    engine = sql.create_engine(url = database_ubicacion)
+    engine = create_engine(
+    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+)
 
     query = f"SELECT * FROM dataset_new" 
     df = pd.read_sql(sql=query, con=engine)
